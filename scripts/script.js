@@ -111,5 +111,79 @@ subMenuEl.style.top = `0`;
 
 
 
+//Part 4: Adding Menu Interaction
+
+var menuLinks = [
+    {text: 'about', href: '/about'},
+    {text: 'catalog', href: '#', subLinks: [
+      {text: 'all', href: '/catalog/all'},
+      {text: 'top selling', href: '/catalog/top'},
+      {text: 'search', href: '/catalog/search'},
+    ]},
+    {text: 'orders', href: '#' , subLinks: [
+      {text: 'new', href: '/orders/new'},
+      {text: 'pending', href: '/orders/pending'},
+      {text: 'history', href: '/orders/history'},
+    ]},
+    {text: 'account', href: '#', subLinks: [
+      {text: 'profile', href: '/account/profile'},
+      {text: 'sign out', href: '/account/signout'},
+    ]},
+  ];
+
+
+//   Select and cache the all of the <a> elements inside of topMenuEl in a variable named topMenuLinks.
+
+let topMenuLinks = document.querySelectorAll(`a`);
+
+// Attach a delegated 'click' event listener to topMenuEl.
+
+topMenuEl.addEventListener(`click`, () => {handleClickMenu(eve)});
+
+// The first line of code of the event listener function should call the event object's preventDefault() method.
+// The second line of code of the function should immediately return if the element clicked was not an <a> element.
+
+function handleClickMenu (eve){
+
+    eve.preventDefault();
+   
+    if(eve.target.tagName !== `a`){
+        return;
+    }
+    console.log(evt.target.textContent);
+
+    topMenuLinks.forEach(link => link.classList.remove('active'));
+  eve.target.classList.add('active');
+
+}
+
+
+// Log the content of the <a> to verify the handler is working.
+// Progress Check - Ensure that clicking ABOUT, CATALOG, etc. logs about, catalog, etc. when a link is clicked. Clicking anywhere other than on a link should do nothing.
+
+// Now that we have references to each of these links, and a registered event listener, we will want to add a toggled "active" state to each menu item, showing whether or not it is currently selected:
+// The event listener should add the active class to the <a> element that was clicked, unless it was already active, in which case it should remove it.
+// The event listener should remove the active class from each other <a> element in topMenuLinks - whether the active class exists or not.
+// Hint: Removing a non-existent class from an element does not cause an error!
+
+
+topMenuEl.addEventListener(`click`, () => {handleClickMenu(eve)});
+
+function handleClickMenu (eve){
+
+    for(let i=0;i<topMenuLinks.length;i++){
+        
+        topMenuLinks[i].classList.remove(`active`);
+        
+    }
+
+    eve.target.classList.add(`active`);
+
+}
+
+
+
+
+
 
 
